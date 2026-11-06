@@ -1,0 +1,9 @@
+PASS Tab changes player, camera and controls | active=Mage, warrior HP=90
+PASS Bolt animates, then hits without mana cost | target=82, mana=100
+PASS Fire explodes across the group and has a cooldown | mana=76, cooldown=4,157935
+PASS Frost damages and interrupts | target=78
+PASS Nova hits targets around the caster | group HP expected 70
+PASS Fire cannot damage through a wall | target=100
+PASS Barrier absorbs 40 damage and lets excess through | mage HP=92
+PASS Warrior retains HP and mage retains mana when switching | warrior HP=90, mage mana=74
+PASS Warrior sword attack still works after returning | target=75

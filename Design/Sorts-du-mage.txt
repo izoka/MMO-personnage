@@ -1,0 +1,32 @@
+MAGE DU BAC À SABLE
+
+Oriente le mage dans la direction du sort. Tab permet de passer du guerrier au mage
+ou de revenir au guerrier, une fois au sol et libre de ses mouvements.
+
+Clic gauche · Trait d’arcane
+Un projectile violet inflige 18 dégâts. Il ne consomme pas de mana.
+Animation Spellcast_Shoot. Le bâton part vers l’avant au lancement du trait.
+
+1 · Orbe de feu
+Un orbe orange explose sur une collision ou en fin de course. Il inflige 38 dégâts
+dans un rayon de 2,1 mètres. Coût de 24 mana. Recharge de 5 secondes.
+Animation Spellcast_Long. Une incantation plus longue précède le lancer.
+
+2 · Éclat de givre
+Un projectile cyan inflige 22 dégâts et interrompt brièvement la cible.
+Coût de 18 mana. Recharge de 6 secondes.
+Animation Spellcast_Raise. Le mage lève son bâton avant la libération.
+
+3 · Onde arcanique
+Une impulsion autour du mage inflige 30 dégâts dans un rayon de 3 mètres et
+interrompt brièvement les cibles. Coût de 25 mana. Recharge de 8 secondes.
+Animation Spellcasting. L’incantation accompagne l’expansion de l’anneau.
+
+4 · Barrière
+La protection absorbe jusqu’à 40 dégâts pendant 5 secondes.
+Coût de 26 mana. Recharge de 12 secondes.
+Animation Spellcast_Raise. Des anneaux bleus matérialisent la protection.
+
+Le mage a 100 mana. La régénération reprend après une courte pause entre les sorts.
+Un coup reçu pendant l’incantation peut l’interrompre. Les projectiles en vol et la
+barrière se dissipent au changement de classe. Chaque classe garde ses ressources.

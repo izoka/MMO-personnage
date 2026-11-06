@@ -1,0 +1,9 @@
+Kenney Particle Pack 1.1 — Kenney Vleugels, CC0 1.0
+https://kenney.nl/assets/particle-pack
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Original PNGs from the Calinou mirror of Kenney's pack
+https://github.com/Calinou/kenney-particle-pack
+
+See LICENSE.txt for the included license. The spell materials and particle
+compositions in Assets/Prototype use eight of the original textures.

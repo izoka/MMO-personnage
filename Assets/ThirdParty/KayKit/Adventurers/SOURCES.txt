@@ -1,0 +1,10 @@
+KayKit Adventurers Character Pack 1.0, by Kay Lousberg.
+https://github.com/KayKit-Game-Assets/KayKit-Character-Pack-Adventures-1.0
+https://kaylousberg.itch.io/kaykit-adventurers
+
+Imported files include Knight.fbx, RogueHooded.fbx, Mage.fbx and their texture atlases.
+The FBX files were downloaded from the author's public GitHub repository.
+The license notice from the pack is included in LICENSE.txt (CC0).
+
+The project prefabs select one sword per fighter and one staff for the mage.
+The project uses the embedded clips.

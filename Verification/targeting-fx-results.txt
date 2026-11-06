@@ -1,0 +1,22 @@
+PASS Center view acquires near dummy
+PASS Next target selects another visible enemy
+PASS Toggle releases lock
+PASS Reacquire from the original view
+PASS Warrior uses right strafe while locked
+PASS Warrior uses backstep while locked
+PASS Warrior strikes locked dummy in melee range from off-axis
+PASS Lock survives switch to mage
+PASS Fire begins while mage faces away
+PASS Fire hits locked dummy for 38 HP
+PASS Frost starts
+PASS Frost hits locked dummy for 22 HP
+PASS Arcane bolt starts
+PASS Arcane bolt hits locked dummy for 18 HP
+PASS Nova starts
+PASS Nova stays centered on mage and respects its range
+PASS Barrier starts
+PASS Barrier grants 40 absorption and displays particles
+PASS An obstacle drops the lock
+PASS Occluded dummy cannot be acquired
+PASS Lock can be acquired again
+PASS Dead target releases lock

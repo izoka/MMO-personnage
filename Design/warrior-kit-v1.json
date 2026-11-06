@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "status": "proposition_a_discuter",
+  "implemented": false,
+  "class": {
+    "name": "Guerrier",
+    "archetype": "Épéiste polyvalent",
+    "weapon": "Épée à une main",
+    "user_selected_style": "Mobilité, combos et parade",
+    "role": "Combattant de mêlée mobile, avec une défense active et des ouvertures à exploiter.",
+    "scope": "Kit initial complet pour le bac à sable ; progression et spécialisations à définir ultérieurement."
+  },
+  "balance": {
+    "status": "Valeurs de départ à ajuster sur le pantin.",
+    "damage_reference": 25,
+    "damage_note": "Les multiplicateurs s'appliquent au coup léger de référence ; futur calcul d'armure à définir.",
+    "stamina": {
+      "maximum": 100,
+      "regeneration_per_second": 20,
+      "regeneration_delay_after_spending_s": 1,
+      "regenerates_while_attacking": false,
+      "regenerates_while_guarding": false,
+      "rule": "Une action ne démarre que si son coût est disponible ; pour la charge, réserver le coût minimal et plafonner la charge selon l'endurance restante."
+    }
+  },
+  "global_rules": {
+    "hit_count": "Une cible n'est touchée qu'une fois par étape d'attaque.",
+    "collision": "La géométrie bloque les déplacements offensifs et les impacts.",
+    "input_buffer_s": 0.12,
+    "combo_continue_window_after_recovery_s": 0.45,
+    "combo_reset": "Après expiration de la fenêtre, garde, esquive, saut ou technique spéciale.",
+    "cancelling": "Aucune annulation d'une attaque pendant son armement ou son impact ; garde et esquive possibles dans les 0,18 dernières secondes de récupération.",
+    "orientation": "Orientation du coup fixée au début de sa phase active ; jamais de rotation instantanée à 180 degrés.",
+    "context_priority_on_primary_attack": [
+      "Riposte disponible et au sol",
+      "Frappe plongeante disponible en l'air",
+      "Fente disponible pendant la course",
+      "Enchaînement léger au sol"
+    ],
+    "camera": "Le clic droit maintenu conserve la caméra du prototype."
+  },
+  "skills": [
+    {
+      "id": "light_combo",
+      "name": "Enchaînement léger",
+      "kind": "attack",
+      "role": "Attaque régulière et apprentissage du rythme.",
+      "animation": "Taille horizontale, revers, puis diagonale descendante.",
+      "input": "Clic gauche répété",
+      "hits": [
+        {
+          "damage_multiplier": 1,
+          "impact_s": 0.26,
+          "duration_s": 0.62,
+          "stamina": 6
+        },
+        {
+          "damage_multiplier": 1.1,
+          "impact_s": 0.24,
+          "duration_s": 0.58,
+          "stamina": 6
+        },
+        {
+          "damage_multiplier": 1.5,
+          "impact_s": 0.38,
+          "duration_s": 0.78,
+          "stamina": 10
+        }
+      ],
+      "cooldown_s": 0,
+      "shape": {
+        "type": "frontal_arc",
+        "reach_m": 1.6,
+        "angle_degrees": 100
+      },
+      "rules": [
+        "Chaque étape exige une nouvelle pression, éventuellement mémorisée juste avant la fin du coup.",
+        "Une cible ne subit qu'un impact par étape.",
+        "Le troisième coup termine l'enchaînement ; aucun départ automatique du combo suivant."
+      ]
+    },
+    {
+      "id": "charged_strike",
+      "name": "Frappe lourde",
+      "kind": "attack",
+      "role": "Punir une ouverture longue avec un coup engagé.",
+      "animation": "Lever l'épée, armer la taille puis frapper en diagonale.",
+      "input": "C maintenu puis relâché",
+      "damage_multiplier_min": 1.6,
+      "damage_multiplier_max": 2.4,
+      "charge_max_s": 0.8,
+      "windup_after_release_s": 0.28,
+      "recovery_s": 0.5,
+      "stamina_min": 20,
+      "stamina_max": 30,
+      "cooldown_s": 0,
+      "shape": {
+        "type": "frontal_arc",
+        "reach_m": 1.7,
+        "angle_degrees": 90
+      },
+      "rules": [
+        "Dégâts et coût évoluent avec la charge.",
+        "Déplacement ralenti pendant la charge ; orientation fixée à la libération.",
+        "Un seul impact, indépendamment du temps de chevauchement."
+      ]
+    },
+    {
+      "id": "thrust",
+      "name": "Estoc",
+      "kind": "attack",
+      "role": "Atteindre une cible un peu plus loin avec une attaque précise.",
+      "animation": "Ramener la garde près du buste puis tendre le bras et le buste.",
+      "input": "1",
+      "damage_multiplier": 1.2,
+      "stamina": 12,
+      "cooldown_s": 3,
+      "windup_s": 0.22,
+      "recovery_s": 0.36,
+      "shape": {
+        "type": "narrow_thrust",
+        "reach_m": 2.2,
+        "width_m": 0.35
+      },
+      "rules": [
+        "Direction étroite et faible couverture latérale.",
+        "Touche la première cible rencontrée ; aucune traversée des murs."
+      ]
+    },
+    {
+      "id": "advancing_lunge",
+      "name": "Fente",
+      "kind": "attack",
+      "role": "Rejoindre un adversaire proche en attaquant.",
+      "animation": "Poussée de la jambe arrière, déplacement vers l'avant, pointe tendue.",
+      "input": "Clic gauche pendant la course, si disponible",
+      "damage_multiplier": 1,
+      "stamina": 18,
+      "cooldown_s": 6,
+      "travel_m": 3.5,
+      "travel_s": 0.4,
+      "recovery_s": 0.3,
+      "shape": {
+        "type": "moving_thrust",
+        "reach_m": 1.35,
+        "width_m": 0.5
+      },
+      "rules": [
+        "Déplacement soumis aux collisions, sans téléportation ni traversée de la cible.",
+        "L'impact n'est appliqué qu'une fois pendant la phase active.",
+        "Si la compétence est indisponible, le clic utilise l'attaque légère."
+      ]
+    },
+    {
+      "id": "sweep",
+      "name": "Balayage",
+      "kind": "attack",
+      "role": "Toucher plusieurs ennemis regroupés devant soi.",
+      "animation": "Pivot des hanches puis taille large, presque horizontale.",
+      "input": "2",
+      "damage_multiplier": 0.9,
+      "stamina": 20,
+      "cooldown_s": 5,
+      "windup_s": 0.35,
+      "recovery_s": 0.42,
+      "shape": {
+        "type": "frontal_arc",
+        "reach_m": 1.8,
+        "angle_degrees": 160
+      },
+      "rules": [
+        "Un impact maximum par cible.",
+        "Le dos reste découvert.",
+        "L'animation et le volume actif doivent suivre le même arc."
+      ]
+    },
+    {
+      "id": "guard_breaker",
+      "name": "Brise-garde",
+      "kind": "attack",
+      "role": "Ouvrir une défense adverse.",
+      "animation": "Raccourcir la prise puis donner un coup sec de pommeau.",
+      "input": "3",
+      "damage_multiplier": 0.5,
+      "stamina": 18,
+      "cooldown_s": 7,
+      "windup_s": 0.32,
+      "recovery_s": 0.42,
+      "shape": {
+        "type": "short_frontal",
+        "reach_m": 1.05,
+        "angle_degrees": 65
+      },
+      "rules": [
+        "Sur une cible ordinaire en garde : interrompt la garde pendant 0,8 seconde.",
+        "Sur une cible ordinaire sans garde : bref recul, sans étourdissement prolongé.",
+        "Un boss ne subit pas automatiquement cette interruption ; sa réaction doit être définie avec le boss."
+      ]
+    },
+    {
+      "id": "retreating_cut",
+      "name": "Recul tranchant",
+      "kind": "attack",
+      "role": "Frapper au contact puis recréer de la distance.",
+      "animation": "Taille courte à l'avant puis pas glissé vers l'arrière.",
+      "input": "4",
+      "damage_multiplier": 0.8,
+      "stamina": 16,
+      "cooldown_s": 8,
+      "windup_s": 0.18,
+      "recovery_s": 0.28,
+      "retreat_m": 1.6,
+      "retreat_s": 0.28,
+      "shape": {
+        "type": "frontal_arc",
+        "reach_m": 1.45,
+        "angle_degrees": 100
+      },
+      "rules": [
+        "Le coup est résolu avant le recul.",
+        "Le recul respecte les obstacles et ne procure pas d'invulnérabilité implicite."
+      ]
+    },
+    {
+      "id": "riposte",
+      "name": "Riposte",
+      "kind": "conditional_attack",
+      "role": "Récompenser une parade réussie.",
+      "animation": "Écarter la lame adverse puis porter un estoc court et rapide.",
+      "input": "Clic gauche dans la seconde après une parade parfaite",
+      "damage_multiplier": 1.8,
+      "stamina": 0,
+      "cooldown_s": 0,
+      "windup_s": 0.16,
+      "recovery_s": 0.38,
+      "shape": {
+        "type": "narrow_thrust",
+        "reach_m": 1.65,
+        "width_m": 0.5
+      },
+      "rules": [
+        "La fenêtre dure 1 seconde, n'est pas cumulable et ne permet qu'une riposte.",
+        "Un coup manqué consomme aussi la fenêtre.",
+        "La riposte exige toujours que la cible soit à portée."
+      ]
+    },
+    {
+      "id": "descending_strike",
+      "name": "Frappe plongeante",
+      "kind": "conditional_attack",
+      "role": "Transformer un saut en attaque engagée.",
+      "animation": "Lever l'épée en l'air puis descendre en frappant devant les pieds.",
+      "input": "Clic gauche en l'air, si disponible",
+      "damage_multiplier": 1.5,
+      "stamina": 20,
+      "cooldown_s": 4,
+      "recovery_after_landing_s": 0.5,
+      "shape": {
+        "type": "short_frontal_at_landing",
+        "reach_m": 1.35,
+        "angle_degrees": 95
+      },
+      "rules": [
+        "Une utilisation par saut, impact unique au contact du sol.",
+        "Les dégâts ne dépendent pas de la hauteur de chute.",
+        "L'atterrissage laisse une récupération visible."
+      ]
+    },
+    {
+      "id": "guard",
+      "name": "Garde",
+      "kind": "defense",
+      "role": "Réduire une attaque physique frontale en restant en place.",
+      "animation": "Remonter l'épée en protection devant le buste.",
+      "input": "F maintenu",
+      "damage_reduction": 0.7,
+      "frontal_angle_degrees": 120,
+      "stamina_per_block_base": 15,
+      "stamina_per_block_incoming_damage_multiplier": 0.25,
+      "movement_speed_multiplier": 0.35,
+      "rules": [
+        "Aucune protection arrière et aucune régénération d'endurance pendant la garde.",
+        "Une attaque explicitement imparable ignore la garde.",
+        "Si l'endurance ne couvre pas le blocage, la garde se brise : dégâts complets et récupération d'une seconde."
+      ]
+    },
+    {
+      "id": "perfect_parry",
+      "name": "Parade parfaite",
+      "kind": "timed_defense",
+      "role": "Neutraliser un coup avec un timing précis puis ouvrir une riposte.",
+      "animation": "Déviation brève de la lame, distincte de la garde tenue.",
+      "input": "Commencer la garde juste avant l'impact",
+      "window_s": 0.18,
+      "rearm_delay_s": 0.65,
+      "stamina_per_success": 8,
+      "frontal_angle_degrees": 120,
+      "rules": [
+        "Valable uniquement contre un coup physique parable venant de face.",
+        "La fenêtre s'ouvre uniquement à une nouvelle pression, après relâchement de la précédente.",
+        "Une réussite absorbe l'impact et ouvre la riposte ; une garde trop tôt redevient une garde ordinaire.",
+        "Les coups multiples restent des impacts distincts : une réussite n'annule pas tout un enchaînement."
+      ]
+    },
+    {
+      "id": "dodge",
+      "name": "Esquive",
+      "kind": "mobility",
+      "role": "Sortir de la trajectoire d'une attaque et se repositionner.",
+      "animation": "Abaisser le buste, pousser sur une jambe puis effectuer un pas vif.",
+      "input": "E avec une direction, vers l'avant à l'arrêt",
+      "stamina": 20,
+      "cooldown_s": 0.85,
+      "duration_s": 0.32,
+      "speed_m_s": 8.5,
+      "distance_m_approx": 2.72,
+      "invulnerability_window_s": 0,
+      "rules": [
+        "Déplacement soumis aux collisions.",
+        "Une attaque engagée empêche une nouvelle esquive jusqu'à sa fenêtre de récupération.",
+        "Les premières valeurs de durée et de déplacement reprennent le pantin existant."
+      ]
+    }
+  ],
+  "animation_inventory": {
+    "offensive_motions": 11,
+    "detail": "3 coups légers + 1 frappe lourde + 1 estoc + 1 fente + 1 balayage + 1 brise-garde + 1 recul tranchant + 1 riposte + 1 frappe plongeante.",
+    "additional_required_poses": [
+      "Garde tenue",
+      "Parade réussie",
+      "Échec de garde",
+      "Esquive directionnelle",
+      "Réaction de la cible à l'impact"
+    ]
+  },
+  "integration_blocks": [
+    {
+      "order": 1,
+      "skills": [
+        "light_combo",
+        "charged_strike"
+      ],
+      "test_scene": "Cible fixe existante",
+      "acceptance": [
+        "Trois impacts et silhouettes distincts pour le combo.",
+        "Une pression volontaire par étape ; pas d'attaque automatique.",
+        "Charge lisible et un impact unique pour la lourde.",
+        "Animations, portée et instant d'impact correspondent."
+      ]
+    },
+    {
+      "order": 2,
+      "skills": [
+        "guard",
+        "perfect_parry",
+        "riposte",
+        "dodge"
+      ],
+      "test_scene": "Ajouter un adversaire de test qui frappe lentement",
+      "acceptance": [
+        "Coups frontaux bloqués, coups arrière reçus.",
+        "Parade uniquement dans la fenêtre définie.",
+        "Une seule riposte par réussite.",
+        "Déplacement d'esquive et consommation d'endurance mesurables."
+      ]
+    },
+    {
+      "order": 3,
+      "skills": [
+        "thrust",
+        "advancing_lunge",
+        "sweep",
+        "guard_breaker",
+        "retreating_cut",
+        "descending_strike"
+      ],
+      "test_scene": "Cibles espacées, groupe de cibles, cible capable de garder, obstacles",
+      "acceptance": [
+        "Chaque technique possède une utilité et une silhouette distinctes.",
+        "Aucun déplacement à travers un mur.",
+        "Aucun double impact involontaire.",
+        "Les délais et coûts empêchent les enchaînements infinis."
+      ]
+    }
+  ],
+  "prototype_unchanged": true
+}

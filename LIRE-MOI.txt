@@ -1,0 +1,86 @@
+BAC À SABLE · PERSONNAGES, ANIMATIONS ET COMPÉTENCES
+
+Lancer Builds\Bac-a-sable\BacASable.exe ou ouvrir Assets/Prototype/Scenes/ClassSandboxRevive.unity.
+L’arène sert à tester les modèles, les déplacements, les animations et les
+compétences des quatre classes. R remet l’arène à zéro.
+T met les adversaires en pause ou relance le combat.
+Tab fait défiler le guerrier, le mage, le rôdeur et le soigneur au sol, entre deux actions.
+Garde brièvement une cible près du réticule pour la verrouiller automatiquement.
+V sélectionne la prochaine cible visible. Le verrouillage se relâche si la
+cible tombe, sort de portée ou reste masquée par un obstacle.
+Les projectiles du mage visent la cible verrouillée au départ du tir.
+Clic gauche pour le trait d’arcane, 1 pour le feu, 2 pour le givre,
+3 pour l’onde arcanique, 4 pour la barrière. Le détail des sorts et des
+animations figure dans Design/Sorts-du-mage.txt.
+Les textures de particules Kenney et leur licence CC0 figurent dans Assets/ThirdParty/Kenney/ParticlePack.
+
+RÔDEUR ARBALÉTRIER
+Clic gauche pour le carreau rapide, 1 pour le tir de précision à longue portée,
+2 pour interrompre avec un carreau entravant, 3 pour tirer trois carreaux en
+éventail et 4 pour briser la garde. Les compétences 1 à 4 consomment de
+l’endurance. Le rôdeur peut se déplacer pendant le rechargement.
+
+SOIGNEUR
+Clic gauche pour le trait lumineux. 1 rend jusqu’à 36 points de vie.
+2 rend jusqu’à 40 points de vie par pulsations sur 5 secondes.
+3 absorbe jusqu’à 42 dégâts pendant 6 secondes. 4 pose un cercle qui réduit
+de moitié les dégâts reçus à l’intérieur pendant 5 secondes.
+L’allié se bat derrière les marches quand le soigneur est actif.
+Appuie sur X pour le sélectionner, puis lance
+les sorts 1 à 4. Appuie de nouveau sur X pour revenir aux soins sur soi.
+Le clic gauche permet de participer au combat avec le Trait lumineux.
+Un arbalétrier attaque aussi depuis le côté gauche. Regarde sa cible au-dessus
+de sa tête et touche-le au Trait lumineux pendant la préparation pour
+interrompre son tir. T met l’escarmouche en pause ou la relance.
+L’allié suit l’épéiste, puis poursuit l’arbalétrier si l’épéiste tombe.
+L’épéiste change d’angle entre ses attaques. L’arbalétrier se replace pour
+garder sa distance et retrouver une ligne de tir.
+L’épéiste annonce un balayage avec un secteur rouge au sol. Sors du secteur
+avant l’impact ou protège l’allié s’il s’y trouve encore. Le balayage peut
+toucher les deux personnages s’ils restent dans la zone.
+Un tir sur deux de l’arbalétrier est toxique et se reconnaît au carreau
+violet. Une blessure toxique inflige 6 dégâts par seconde pendant 4 secondes.
+Une Égide qui absorbe complètement le carreau empêche l’empoisonnement.
+Appuie sur 5 pour dissiper le poison de la cible de soutien choisie avec X.
+Quand l’allié tombe, sélectionne-le avec X si besoin, puis appuie sur 6.
+Après l’incantation, il se relève à cet endroit avec 45 PV. Un coup qui
+blesse le soigneur pendant l’incantation l’interrompt et rend le mana dépensé.
+Le cercle du sanctuaire se pose aux pieds de la cible et protège aussi
+le soigneur s’il se tient dedans. Le cercle reste au sol si l’allié bouge,
+alors que l’Égide le suit. Garde l’allié à portée et dégagé pour lancer
+les soins. V reste réservé aux cibles ennemies.
+
+GUERRIER - BAC À SABLE DE MOUVEMENTS ET COMBAT
+
+Lancer Builds\Guerrier-KayKit\Guerrier.exe.
+Conserver l'exécutable et les autres fichiers de son dossier ensemble.
+
+COMMANDES
+ZQSD ou WASD pour se déplacer, Maj pour courir, Espace pour sauter.
+Clic gauche pour enchaîner les trois coups. En courant, il déclenche
+une fente. En l'air, il prépare une frappe à l'atterrissage.
+Maintenir C et relâcher pour porter une frappe lourde.
+Maintenir F pour garder. Appuyer juste avant l'impact pour parer,
+puis cliquer pour riposter.
+1 pour l'estoc, 2 pour le balayage, 3 pour le brise-garde, 4 pour le recul tranchant.
+E pour esquiver. T pour mettre le partenaire de duel en pause ou le relancer.
+Clic droit maintenu pour tourner la caméra et molette pour zoomer.
+R pour revenir au départ. F1 pour afficher ou masquer l'aide. Alt + F4 pour quitter.
+
+ESSAI RAPIDE
+Avancer vers la cible orange et essayer les trois frappes du combo.
+Le groupe de cibles sert à tester le balayage. Le partenaire de duel,
+derrière les marches, permet d'essayer la garde, la parade et le brise-garde.
+
+PROJET UNITY
+Version : 6000.3.26f1
+Ouvrir Assets/Prototype/Scenes/WarriorCharacters.unity.
+Ouvrir le projet puis appuyer sur Play.
+
+Le chevalier jouable et le rôdeur du duel utilisent des modèles et animations KayKit.
+Certaines compétences partagent une animation adaptée à leur durée.
+Les sources et la licence CC0 figurent dans Assets/ThirdParty/KayKit/Adventurers.
+
+VERIFICATIONS
+Le rapport de vérification Unity se trouve dans Verification/results.json.
+La capture des deux modèles se trouve dans Verification/guerrier-kaykit.png.

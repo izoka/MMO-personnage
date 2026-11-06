@@ -1,0 +1,135 @@
+{
+    "passed": true,
+    "checks": [
+        {
+            "name": "Ground contact",
+            "passed": true,
+            "detail": "(0.00, 0.00, 0.00)"
+        },
+        {
+            "name": "Walk",
+            "passed": true,
+            "detail": "distance=1,925162"
+        },
+        {
+            "name": "Sprint",
+            "passed": true,
+            "detail": "walk=1,925162, run=3,35676"
+        },
+        {
+            "name": "Jump and landing",
+            "passed": true,
+            "detail": "height_sample=0,9147354, grounded=True"
+        },
+        {
+            "name": "Dodge eases into movement",
+            "passed": true,
+            "detail": "initial speed=3,569323"
+        },
+        {
+            "name": "Dodge distance and cooldown",
+            "passed": true,
+            "detail": "distance=2,72"
+        },
+        {
+            "name": "Dodge available again",
+            "passed": true,
+            "detail": "cooldown expired"
+        },
+        {
+            "name": "Arena wall collision",
+            "passed": true,
+            "detail": "x=-9,535001"
+        },
+        {
+            "name": "Attack windup",
+            "passed": true,
+            "detail": "health before impact=100"
+        },
+        {
+            "name": "Front hit applies once",
+            "passed": true,
+            "detail": "health=75, hits=1"
+        },
+        {
+            "name": "No repeated damage in recovery",
+            "passed": true,
+            "detail": "health=75"
+        },
+        {
+            "name": "Target behind is not hit",
+            "passed": true,
+            "detail": "health=100"
+        },
+        {
+            "name": "Out of range misses",
+            "passed": true,
+            "detail": "health=100"
+        },
+        {
+            "name": "Target down after four hits",
+            "passed": true,
+            "detail": "health=0"
+        },
+        {
+            "name": "Target automatically resets",
+            "passed": true,
+            "detail": "health=100"
+        },
+        {
+            "name": "Stairs are climbable",
+            "passed": true,
+            "detail": "(4.00, 0.92, 5.60)"
+        },
+        {
+            "name": "Guard pose blends from the current pose",
+            "passed": true,
+            "detail": "early=3,820372, settled=11,98461"
+        },
+        {
+            "name": "Imported walking clip moves the leg without translating its root",
+            "passed": true,
+            "detail": "clip=Walking_A, root=(0.00, 0.00, 0.00)"
+        },
+        {
+            "name": "Full charge hits once and spends 30 stamina",
+            "passed": true,
+            "detail": "target=40, stamina=70"
+        },
+        {
+            "name": "Thrust reaches the distant target once",
+            "passed": true,
+            "detail": "target=70"
+        },
+        {
+            "name": "Sprint attack lunges, hits once and stops at the target",
+            "passed": true,
+            "detail": "target=75, z=2,91"
+        },
+        {
+            "name": "Sweep reaches all three targets once",
+            "passed": true,
+            "detail": "hits=3"
+        },
+        {
+            "name": "Guard breaker opens the defender",
+            "passed": true,
+            "detail": "target=88"
+        },
+        {
+            "name": "Retreat strikes first, then withdraws",
+            "passed": true,
+            "detail": "target=80, z=0,7506756"
+        },
+        {
+            "name": "Plunge strikes on landing",
+            "passed": true,
+            "detail": "target=62"
+        },
+        {
+            "name": "Duel attack can be parried and riposted",
+            "passed": true,
+            "detail": "player=100, opponent=205"
+        }
+    ]
+}
